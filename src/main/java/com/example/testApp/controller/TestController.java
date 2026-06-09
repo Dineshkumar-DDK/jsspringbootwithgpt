@@ -1,7 +1,9 @@
 package com.example.testApp.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;	
+import com.example.testApp.services.TaskService;
+import com.example.testApp.model.Tasks;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,46 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-class Tasks{
-	private Long id;
-	private String name;
-	
-	
-	public Tasks(Long id, String name){
-		this.id=id;
-		this.name=name;
-	}
-	
-	public Tasks() {
-		
-	}
-	
-	// getter setter podalana - empty object daan varum while hitting the /tasks endpoint
-	// solution - getter and setter 
-	// reference - https://chatgpt.com/share/6a1f703e-1298-83a6-a909-c9a13fad93e2 ( aikyne@gmail.com ) 
-	// search for - because Spring/Jackson can only serialize fields that it can access.
-	
-	public long getId() {
-		return id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name=name;
-	}
-
-	public void setId(Long id) {
-		this.id=id;
-	}
-	
-}
-
 @RestController
 public class TestController {
-	private List<Tasks> tasks = new ArrayList<>();
+	
 	@GetMapping("/hello")
 	public String HelloWorld() {
 		return "Hello World";
@@ -57,7 +22,7 @@ public class TestController {
 	
 	@GetMapping("/tasks")
 	public List<Tasks> getTasks() {
-		return  tasks;
+		return  TaskService.getTasks();
 	}
 	
 	
