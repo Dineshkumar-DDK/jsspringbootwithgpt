@@ -28,5 +28,25 @@ public class TaskService {
 		}
 		return null;
 	}
+
+    public Tasks getTaskById(Long id){
+        for(Tasks task:tasks){
+            if(task.getId().equals(id)){
+                return task;
+            }
+        }
+        return null;
+    }
 	
+    public String deleteTask(Long id){
+        List<Tasks> updatedTask = tasks;
+        for(Tasks task:updatedTask){
+            if(task.getId().equals(id)){
+                updatedTask.remove(task);
+                tasks = updatedTask;
+                return "Task with id:"+id+" deleted successfully";
+            }
+        }
+        return "Task with id:"+id+" Not founded";
+    }
 }

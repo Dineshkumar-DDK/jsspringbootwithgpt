@@ -19,7 +19,7 @@ public class Tasks{
 	// reference - https://chatgpt.com/share/6a1f703e-1298-83a6-a909-c9a13fad93e2 ( aikyne@gmail.com ) 
 	// search for - because Spring/Jackson can only serialize fields that it can access.
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	

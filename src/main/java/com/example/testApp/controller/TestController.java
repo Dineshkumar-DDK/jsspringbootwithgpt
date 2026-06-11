@@ -18,7 +18,6 @@ import com.example.testApp.services.TaskService;
 
 @RestController
 public class TestController {
-	private List<Tasks> tasks = new ArrayList<>();
 	// controller use 
 	private TaskService taskService = new TaskService();
 	
@@ -36,6 +35,9 @@ public class TestController {
 	// public Tasks task getTaskById(@PathVariable Tasks task) {
 	// 	return taskService.getTaskById(task);
 	// }
+
+
+	
 	
 	@PostMapping("/tasks")
 	public List<Tasks> saveTasks(@RequestBody Tasks task) {
@@ -62,15 +64,7 @@ public class TestController {
 
 	@DeleteMapping("/tasks/{id}")
 	public String deleteTask(@PathVariable Long id ){
-		List<Tasks> updatedTasks = taskService.getTasks();
-		for(Tasks task:updatedTasks){
-			if(task.getId()==id){
-				updatedTasks.remove(task);
-				tasks = updatedTasks;
-				return "Task with id:"+id+" deleted successfully";
-			}
-		}
-		return "Task with id:"+id+" Not founded";
+		return taskService.deleteTask(id);
 	}
 	
 	
