@@ -58,8 +58,8 @@ public class TestController {
 //	}
 	
 	@PutMapping("/tasks/{id}")
-	public List<Tasks> editTasks(@RequestBody Tasks task){
-		return taskService.editTask(task);
+	public String editTasks(@PathVariable Long id ,@RequestBody Tasks task){
+		return taskService.editTask(task,id);
 	}
 
 	@DeleteMapping("/tasks/{id}")

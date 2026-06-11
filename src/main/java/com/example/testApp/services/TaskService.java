@@ -19,14 +19,14 @@ public class TaskService {
 		return tasks;
 	}
 	
-	public List<Tasks> editTask(Tasks currentTask){
+	public List<Tasks> editTask(Tasks currentTask, Long id){
 		for(Tasks task:tasks) {
-			if(task.getId() == currentTask.getId() ) {
+			if(task.getId() == id ) {
 				task.setName(currentTask.getName());
-				return tasks;
+				return "Task with id"+id+"updated";
 			}
 		}
-		return null;
+		return "Task with id" +id+"not found";
 	}
 
     public Tasks getTaskById(Long id){
@@ -39,14 +39,13 @@ public class TaskService {
     }
 	
     public String deleteTask(Long id){
-        List<Tasks> updatedTask = tasks;
-        for(Tasks task:updatedTask){
-            if(task.getId().equals(id)){
-                updatedTask.remove(task);
-                tasks = updatedTask;
-                return "Task with id:"+id+" deleted successfully";
+        for(int i=0;i<tasks.size();i++){
+            if(tasks.get(i).getId().equals(id)){
+                tasks.remove(i);
+                return "Task with id:"+id+"deleted";  
             }
         }
+        
         return "Task with id:"+id+" Not founded";
     }
 }
