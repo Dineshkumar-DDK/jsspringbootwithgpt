@@ -19,14 +19,15 @@ public class TaskService {
 		return tasks;
 	}
 	
-	public List<Tasks> editTask(Tasks currentTask, Long id){
+	public Boolean editTask(Tasks currentTask, Long id){
 		for(Tasks task:tasks) {
-			if(task.getId() == id ) {
+		//	if(task.getId() == id ) {  // oru vela rendu sidum objectaagita dangerous so - .equals
+			if(task.getId().equals(id)) {
 				task.setName(currentTask.getName());
-				return "Task with id"+id+"updated";
+				return true;
 			}
 		}
-		return "Task with id" +id+"not found";
+		return false;
 	}
 
     public Tasks getTaskById(Long id){
@@ -35,7 +36,7 @@ public class TaskService {
                 return task;
             }
         }
-        return null;
+		return null;
     }
 	
     public String deleteTask(Long id){

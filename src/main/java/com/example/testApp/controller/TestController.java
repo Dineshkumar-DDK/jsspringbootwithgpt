@@ -31,10 +31,10 @@ public class TestController {
 		return  taskService.getTasks();
 	}
 	
-	// @GetMapping("/tasks/{id}")
-	// public Tasks task getTaskById(@PathVariable Tasks task) {
-	// 	return taskService.getTaskById(task);
-	// }
+	 @GetMapping("/tasks/{id}")
+	 public Tasks getTaskById(@PathVariable Long id) {
+	 	return taskService.getTaskById(id);
+	 }
 
 
 	
@@ -59,7 +59,11 @@ public class TestController {
 	
 	@PutMapping("/tasks/{id}")
 	public String editTasks(@PathVariable Long id ,@RequestBody Tasks task){
-		return taskService.editTask(task,id);
+		Boolean updated = taskService.editTask(task, id);
+		if(updated){
+			return "Task updated";
+		}
+		return "Task Not Found";
 	}
 
 	@DeleteMapping("/tasks/{id}")
